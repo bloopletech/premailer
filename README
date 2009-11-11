@@ -1,0 +1,53 @@
+= Premailer README
+
+=== What is this?
+
+For the best HTML e-mail delivery results, CSS should be inline.  This is a 
+huge pain and a simple newsletter becomes un-managable very quickly.  This 
+script is my solution.
+
+* All styles referenced by <tt>style</tt> and <tt>link[rel=stylesheet]</tt> 
+tags are converted to inline styles
+* All <tt>style</tt> and <tt>link</tt> are removed (since they are now 
+unnecessary)
+* Existing inline <tt>style</tt> attributes are preserved
+* CSS comments are stripped (including any hacks you might have)
+* All links (i.e. <tt>href</tt>, <tt>src</tt> and CSS <tt>url('')</tt>) 
+are converted to absolute paths
+* CSS properties are checked against Campaign Monitor's guide to CSS support 
+(http://www.campaignmonitor.com/blog/archives/2007/04/a_guide_to_css_support_in_emai_2.html)
+
+=== Requirements, installation and use
+
+Premailer requires Ruby with the Hpricot 
+(http://code.whytheluckystiff.net/hpricot/), text-reform 
+(http://rubyforge.org/projects/text-format/) and CSS Parser 
+(http://code.dunae.ca/css_parser/) gems installed.
+
+You can invoke Premailer via a <code>rake</code> task.
+
+  rake parse url=http://example.com/ out=example.html
+
+To run Premailer off a web server (using link:../index.rhtml) you will need 
+eRuby (http://www.modruby.net/en/index.rbx/eruby/download.html).
+
+=== A few notes and caveats
+
+This script is designed for simple newsletters files--complex files can 
+get ugly very quickly.
+
+<tt>*</tt> selectors are ignored--they are just too messy.
+
+Premailer outputs HTML in UTF-8.
+
+* CSS media selectors are ignored--all CSS is processed
+
+Take a look at the HTML test file (link:../test/test.html) and CSS test file 
+(link:../test/test.css) to see what sort of code is intended.
+
+=== Credits and code
+
+Premailer is written in Ruby.  The code is and web interface can be found at 
+http://code.dunae.ca/premailer.web/
+
+Written by Alex Dunae (dunae.ca, e-mail 'code' at the same domain), 2007.
